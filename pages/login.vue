@@ -16,8 +16,9 @@
               </div>
               <span class="text-danger" v-if="errors">Incorrect email or password.</span>
               <div class="d-grid gap-2">
-                <input type="submit" value="Submit" class="btn btn-primary btn-block mt-2">
+                <input type="submit" :value="isLogIn ? 'Log in' : 'Sign up'" class="btn btn-primary btn-block mt-2">
               </div>
+              <span class="text-success" v-if="registered">Please verify your email. Check your mailbox.</span>
             </div>
           </form>
         </div>
@@ -26,30 +27,42 @@
   </section>
 </template>
 <script setup lang="ts">
-
-interface userData {
+interface IUserData {
   email: string,
   password: string
 }
+definePageMeta({
+  middleware: ["guest"]
+});
 
 const client = useSupabaseAuthClient();
 const errors = ref<boolean>(false);
+const registered = ref<boolean>(false);
 
-const credentials = ref<userData>({
+const credentials = ref<IUserData>({
   email: "",
   password: ""
 });
 
 const formClasses = computed(() => {
-  return errors.value? "form-control is-invalid" : "form-control";
+  return errors.value ? "form-control is-invalid" : "form-control";
+})
+
+const isLogIn = computed(() => {
+  const route = useRoute();
+  return !("signup" in route.query);
 })
 
 const submit = async () => {
-  const { data, error } = await client.auth.signInWithPassword(credentials.value);
+  const { error } = isLogIn.value ?
+    await client.auth.signInWithPassword(credentials.value) :
+    await client.auth.signUp(credentials.value);
   if (error) {
     errors.value = true;
     return;
   }
+  if (isLogIn.value) return navigateTo("/");
+  registered.value = true;
 }
 
 </script>
