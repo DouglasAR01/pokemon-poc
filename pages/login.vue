@@ -27,6 +27,8 @@
   </section>
 </template>
 <script setup lang="ts">
+import { Database } from '~~/types/supabase';
+
 interface IUserData {
   email: string,
   password: string
@@ -35,7 +37,7 @@ definePageMeta({
   middleware: ["guest"]
 });
 
-const client = useSupabaseAuthClient();
+const client = useSupabaseAuthClient<Database>();
 const errors = ref<boolean>(false);
 const registered = ref<boolean>(false);
 

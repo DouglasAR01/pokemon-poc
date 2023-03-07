@@ -7,11 +7,12 @@
 </template>
 <script setup lang="ts">
 import { Pokemon, IPokemonWithFav } from '~~/types';
+import { Database } from '~~/types/supabase';
 definePageMeta({
   middleware: ["auth"]
 });
 
-const client = useSupabaseClient();
+const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
 
 const { data: allPokemons } = await useAsyncData<Pokemon[] | null>('pokemons', async () => {

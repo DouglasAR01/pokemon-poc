@@ -4,6 +4,7 @@
 </template>
 
 <script setup lang="ts">
+import { Database } from "~~/types/supabase";
 interface INewPokemonFav {
   user_id: string,
   pokemon_id: number
@@ -13,7 +14,7 @@ const props = defineProps<{
   favorited: boolean
 }>();
 
-const client = useSupabaseClient();
+const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
 const submitting = ref<boolean>(false);
 const isFav = ref<boolean>(props.favorited);
