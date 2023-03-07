@@ -4,7 +4,7 @@
       <div class="col-md-3 d-flex justify-content-center">
         <img :src="pokemon.image" alt="Pokemon image" class="img-fluid pokemon-img">
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 p-3">
         <div class="row">
           <div class="col-10">
             <h5>#{{ pokemon.pokedex_id }} {{ pokemon.name }}</h5>

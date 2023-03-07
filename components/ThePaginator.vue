@@ -1,8 +1,9 @@
 <template>
   <div class="row">
     <div class="col-sm-4 text-end">
-      <button class="btn btn-primary" :disabled="currentPage - 1 < 1"
-        @click="() => updatePage(currentPage - 1)">←</button>
+      <button class="btn btn-primary" :disabled="currentPage - 1 < 1" @click="() => updatePage(currentPage - 1)">
+        <Icon name="bi:arrow-left" size="1.2em"></Icon>
+      </button>
     </div>
     <div class="col-sm-4 text-center">
       <button class="btn btn-primary me-1" v-for="i in nPages" :key="'bp' + i" :disabled="i == currentPage"
@@ -11,8 +12,9 @@
       </button>
     </div>
     <div class="col-sm-4 text-start">
-      <button class="btn btn-primary" :disabled="currentPage + 1 > nPages"
-        @click="() => updatePage(currentPage + 1)">→</button>
+      <button class="btn btn-primary" :disabled="currentPage + 1 > nPages" @click="() => updatePage(currentPage + 1)">
+        <Icon name="bi:arrow-right" size="1.2em"></Icon>
+      </button>
     </div>
   </div>
 </template>
