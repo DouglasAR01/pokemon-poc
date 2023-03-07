@@ -10,7 +10,7 @@
             <h5>#{{ pokemon.pokedex_id }} {{ pokemon.name }}</h5>
           </div>
           <div class="col-2">
-            <button class="btn btn-primary">Fav</button>
+            <PokemonFavButton :pokemon-id="pokemon.id" :favorited="pokemon.favorite"/>
           </div>
         </div>
         <p>{{ pokemon.pokedex }}</p>
