@@ -1,7 +1,9 @@
 <template>
   <section class="container my-4">
     <h1>Check out the Pokemons!</h1>
-    <PokemonList :pokemons="pokemons"></PokemonList>
+    <TheSimpleSearch :items="pokemons" look-for="name" @filtered="updateList" class="mb-2"/>
+    <PokemonList :pokemons="filteredPokemons" class="pokemon-list"></PokemonList>
+
   </section>
 </template>
 <script setup lang="ts">
@@ -41,4 +43,16 @@ const pokemons = computed(() => {
     return cPokemon;
   })
 })
+
+const filteredPokemons = ref<IPokemonWithFav[]>(pokemons.value);
+
+const updateList = (newValues: IPokemonWithFav[]) => {
+  filteredPokemons.value = newValues;
+}
 </script>
+<style scoped>
+.pokemon-list {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+</style>
