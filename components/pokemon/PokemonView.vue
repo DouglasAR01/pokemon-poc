@@ -1,5 +1,5 @@
 <template>
-  <section class="container my-4">
+  <section>
     <slot></slot>
     <TheSimpleSearch :items="pokemons" look-for="name" @filtered="updateList" class="mb-2" />
     <PokemonList :pokemons="filteredPokemons" class="pokemon-list"></PokemonList>

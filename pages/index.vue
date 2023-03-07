@@ -1,9 +1,9 @@
 <template>
-  <section class="container my-4">
+  <article class="container my-4">
     <PokemonView :all-pokemons="pokemons">
       <h1>Check out the Pokemons!</h1>
     </PokemonView>
-  </section>
+  </article>
 </template>
 <script setup lang="ts">
 import { Pokemon, IPokemonWithFav } from '~~/types';
