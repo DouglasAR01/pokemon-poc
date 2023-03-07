@@ -1,9 +1,8 @@
 <template>
   <section class="container my-4">
-    <h1>Check out the Pokemons!</h1>
-    <TheSimpleSearch :items="pokemons" look-for="name" @filtered="updateList" class="mb-2"/>
-    <PokemonList :pokemons="filteredPokemons" class="pokemon-list"></PokemonList>
-    <ThePaginator :current-page="page" :page-limit="PAGE_LIMIT" :array-len="2" class="mt-2" @page-update="(newPage) => page = newPage"/>
+    <PokemonView :all-pokemons="pokemons">
+      <h1>Check out the Pokemons!</h1>
+    </PokemonView>
   </section>
 </template>
 <script setup lang="ts">
@@ -14,8 +13,6 @@ definePageMeta({
 
 const client = useSupabaseClient();
 const user = useSupabaseUser();
-const page = ref<number>(1);
-const PAGE_LIMIT = ref<number>(20);
 
 const { data: allPokemons } = await useAsyncData<Pokemon[] | null>('pokemons', async () => {
   const { data } = await client.from('pokemons').select().returns<Pokemon[]>();
@@ -33,32 +30,16 @@ const { data: userFavs } = await useAsyncData<number[] | null>('userFavs', async
 });
 
 const pokemons = computed(() => {
-  if (!allPokemons.value){
+  if (!allPokemons.value) {
     return [];
   }
   return allPokemons.value.map(pokemon => {
-    const isFav = userFavs.value? userFavs.value.includes(pokemon.id) : false;
+    const isFav = userFavs.value ? userFavs.value.includes(pokemon.id) : false;
     const cPokemon: IPokemonWithFav = {
       ...pokemon,
       favorite: isFav
     };
     return cPokemon;
-  }).slice((page.value - 1) * PAGE_LIMIT.value, page.value * PAGE_LIMIT.value);
-})
-
-const filteredPokemons = ref<IPokemonWithFav[]>(pokemons.value);
-
-const updateList = (newValues: IPokemonWithFav[]) => {
-  filteredPokemons.value = newValues;
-}
-
-watch(pokemons, () => {
-  filteredPokemons.value = pokemons.value;
+  });
 })
 </script>
-<style scoped>
-.pokemon-list {
-  max-height: 80vh;
-  overflow-y: scroll;
-}
-</style>
