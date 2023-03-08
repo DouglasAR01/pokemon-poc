@@ -5,14 +5,19 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest run"
   },
   "devDependencies": {
     "@nuxtjs/supabase": "^0.3.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/test-utils": "^2.3.0",
+    "jsdom": "^21.1.0",
     "nuxt": "^3.2.3",
     "nuxt-icon": "^0.3.2",
     "sass": "^1.58.3",
-    "supabase": "^1.42.2"
+    "supabase": "^1.42.2",
+    "vitest": "^0.29.2"
   },
   "dependencies": {
     "bootstrap": "^5.2.3"
