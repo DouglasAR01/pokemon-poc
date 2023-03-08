@@ -16,7 +16,8 @@
               </div>
               <span class="text-danger" v-if="errors">Incorrect email or password.</span>
               <div class="d-grid gap-2">
-                <input type="submit" :value="isLogIn ? 'Log in' : 'Sign up'" class="btn btn-primary btn-block mt-2">
+                <input type="submit" :value="isLogIn ? 'Log in' : 'Sign up'" class="btn btn-primary btn-block mt-2"
+                  :disabled="loading">
               </div>
               <span class="text-success" v-if="registered">Please verify your email. Check your mailbox.</span>
             </div>
@@ -41,6 +42,7 @@ const client = useSupabaseAuthClient<Database>();
 const errors = ref<boolean>(false);
 const registered = ref<boolean>(false);
 const user = useSupabaseUser();
+const loading = ref<boolean>(false);
 let isLoggedIn: boolean = false;
 
 const credentials = ref<IUserData>({
@@ -58,14 +60,16 @@ const isLogIn = computed(() => {
 })
 
 const submit = async () => {
+  loading.value = true;
   const { error } = isLogIn.value ?
     await client.auth.signInWithPassword(credentials.value) :
     await client.auth.signUp(credentials.value);
+  loading.value = false;
   if (error) {
     errors.value = true;
     return;
   }
-  if (isLogIn.value){
+  if (isLogIn.value) {
     isLoggedIn = true;
     return;
   }

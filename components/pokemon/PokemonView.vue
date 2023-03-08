@@ -2,9 +2,14 @@
   <section>
     <slot></slot>
     <TheSimpleSearch :items="pokemons" look-for="name" @filtered="updateList" class="mb-2" />
-    <PokemonList :pokemons="filteredPokemons" class="pokemon-list"></PokemonList>
-    <ThePaginator :current-page="page" :page-limit="PAGE_LIMIT" :array-len="allPokemons.length" class="mt-2"
-      @page-update="(newPage) => page = newPage" />
+    <div v-if="filteredPokemons.length > 0">
+      <PokemonList :pokemons="filteredPokemons" class="pokemon-list"></PokemonList>
+      <ThePaginator :current-page="page" :page-limit="PAGE_LIMIT" :array-len="allPokemons.length" class="mt-2"
+        @page-update="(newPage) => page = newPage" />
+    </div>
+    <div v-else>
+      <h5 class="text-center text-info">Looks like you run out of pokemons!</h5>
+    </div>
   </section>
 </template>
 <script setup lang="ts">

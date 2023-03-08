@@ -8,7 +8,7 @@
         <nuxt-link to="/favorites" class="nav-link">Favorites</nuxt-link>
       </NavbarItem>
       <NavbarItem class="ms-auto">
-        <button class="btn btn-link" @click="signOut">Sign out</button>
+        <button class="btn btn-secondary" @click="signOut">Sign out</button>
       </NavbarItem>
     </template>
   </NavbarBase>
