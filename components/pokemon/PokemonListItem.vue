@@ -7,7 +7,9 @@
       <div class="col-md-9 p-3">
         <div class="row">
           <div class="col-10">
-            <h5>#{{ pokemon.pokedex_id }} {{ pokemon.name }}</h5>
+            <nuxt-link :to="'/pokemon/'+pokemon.id">
+              <h5>#{{ pokemon.pokedex_id }} {{ pokemon.name }}</h5>
+            </nuxt-link>            
           </div>
           <div class="col-2">
             <PokemonFavButton :pokemon-id="pokemon.id" :favorited="pokemon.favorite"/>
