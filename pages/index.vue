@@ -16,7 +16,7 @@ const client = useSupabaseClient<Database>();
 const user = useSupabaseUser();
 
 const { data: allPokemons } = await useAsyncData<Pokemon[] | null>('pokemons', async () => {
-  const { data } = await client.from('pokemons').select().returns<Pokemon[]>();
+  const { data } = await client.from('pokemons').select().order("pokedex_id").returns<Pokemon[]>();
   return data;
 });
 

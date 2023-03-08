@@ -1,6 +1,6 @@
 <template>
-  <Icon name="bi:heart-fill" size="1.2em" :class="buttonClasses" @click="submit" :disabled="submitting" />
-  <!-- <i :class="buttonClasses" @click="submit" :disabled="submitting"></i> -->
+  <Icon :name="isFav ? 'bi:heart-fill' : 'bi:heart'" size="1.2em" :class="buttonClasses" @click="submit"
+    :disabled="submitting" />
 </template>
 
 <script setup lang="ts">
