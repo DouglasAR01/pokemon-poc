@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-3 text-end">
-      <button class="btn btn-primary" :disabled="currentPage - 1 < 1" @click="() => updatePage(currentPage - 1)">
+      <button class="btn btn-primary" :disabled="currentPage - 1 < 1" @click="() => updatePage(currentPage - 1)" data-test="previousPage">
         <Icon name="bi:arrow-left" size="1.2em"></Icon>
       </button>
     </div>
@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="col-3 text-start">
-      <button class="btn btn-primary" :disabled="currentPage + 1 > nPages" @click="() => updatePage(currentPage + 1)">
+      <button class="btn btn-primary" :disabled="currentPage + 1 > nPages" @click="() => updatePage(currentPage + 1)" data-test="nextPage">
         <Icon name="bi:arrow-right" size="1.2em"></Icon>
       </button>
     </div>
@@ -20,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+
 const emit = defineEmits(["pageUpdate"]);
 
 const props = defineProps<{

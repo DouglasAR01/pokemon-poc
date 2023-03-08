@@ -1,11 +1,12 @@
 <template>
   <div>
-    <input type="text" class="form-control" v-model="content" @keyup="search" placeholder="Type the pokemon name...">
-    <span v-if="suggest.length > 0">You may be looking for {{ suggest }}</span>
+    <input type="text" class="form-control" v-model="content" @keyup="search" placeholder="Type the pokemon name..." data-test="searchInput">
+    <span v-if="suggest != ''" data-test="suggest">You may be looking for {{ suggest }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
 const props = defineProps<{
   items: any[],
   lookFor: string
