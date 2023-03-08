@@ -40,6 +40,8 @@ definePageMeta({
 const client = useSupabaseAuthClient<Database>();
 const errors = ref<boolean>(false);
 const registered = ref<boolean>(false);
+const user = useSupabaseUser();
+let isLoggedIn: boolean = false;
 
 const credentials = ref<IUserData>({
   email: "",
@@ -63,8 +65,15 @@ const submit = async () => {
     errors.value = true;
     return;
   }
-  if (isLogIn.value) return navigateTo("/");
+  if (isLogIn.value){
+    isLoggedIn = true;
+    return;
+  }
   registered.value = true;
 }
+
+watchEffect(async () => {
+  if (user.value && isLoggedIn) await navigateTo("/");
+})
 
 </script>
