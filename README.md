@@ -1,42 +1,13 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+# Pokemon POC
+This project is a simple proof of concept using VueJS 3 using the composition API and the Nuxt 3 platform.
+This project takes as backend a small API provided by Supabase, therefore, part of the business logic regarding queries is in the frontend.
+The project has the following features: 
+## Features:
+- Supabase Auth system
+- Supabase backend
+- Scrollable pokemon list
+- Favorites pokemon list
+- Pokemon details
+- Favorite/Like button
+- In-page instant search by Pokemon name
+- Search typeahead suggestions
