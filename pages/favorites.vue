@@ -1,7 +1,7 @@
 <template>
   <article class="container my-4">
     <PokemonView :all-pokemons="favPokemons">
-      <h1>This are your favorites!</h1>
+      <h1>These are your favorites!</h1>
     </PokemonView>
   </article>
 </template>
